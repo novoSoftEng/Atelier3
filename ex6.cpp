@@ -8,7 +8,7 @@ private:
     int date_naissance;
 
 public:
-    Personne(string nom, string prenom, int date_naissance)
+    Personne(string nom,string prenom,int date_naissance)
     {
         this->nom = nom;
         this->prenom = prenom;
@@ -16,54 +16,58 @@ public:
     };
     void afficher()
     {
+        
         cout << "nom " << nom << "\nprenom " << prenom << "\ndate naissance " << date_naissance << endl;
     };
 };
 class Employe : public Personne
 {
-
+  int salaire;
 public:
-    int salaire;
-    Employe(int salaire)
+  
+    Employe(string nom, string prenom, int date_naissance,int salaire):Personne(nom, prenom,date_naissance)
     {
         this->salaire = salaire;
     };
     void afficher()
     {
+        Personne::afficher();
         cout << "salaire " << salaire << endl;
     };
 };
 class Chef : public Employe
 {
-
+ string service;
 public:
-    string service;
-    Employe(string service)
+   
+    Chef(string nom, string prenom, int date_naissance,int salaire,string service):Employe(nom,prenom, date_naissance,salaire)
     {
-        this->sevice = service;
+        this->service = service;
     };
     void afficher()
     {
-        cout << "salaire " << salaire <<"\nservice "<<service<< endl;
+        Employe::afficher();
+        cout <<"service "<<service<< endl;
     };
 };
 class Directeur: public Chef
 {
-
+string societe;
 public:
-    string societe;
-    Employe(string societe)
+Directeur(string nom, string prenom, int date_naissance,int salaire,string service,string societe):Chef(nom,prenom, date_naissance,salaire,service)
     {
         this->societe = societe;
     };
     void afficher()
     {
-        cout << "salaire " << salaire <<"\nservice "<<service<<"\nsociete "<<societe<< endl;
+        Chef::afficher();
+        cout <<"societe "<<societe<< endl;
     };
 };
 
 int main()
 {
-    Personne p("ahmed","blak",1999);
+    Directeur d("liefrid","chihab eddine",2002,2000,"etudiant","fstt");
+    d.afficher();
  
 }
